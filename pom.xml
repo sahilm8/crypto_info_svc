@@ -13,7 +13,7 @@
 	<version>0.0.1</version>
 	<name>crypto_info_svc</name>
 	<description>
-		API to fetch and return crypto data. Based on the CoinMarketCap API.
+		API to fetch and return crypto data. Based on the Alpha Vantage API.
 	</description>
 	<url/>
 	<licenses>
