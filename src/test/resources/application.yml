@@ -1,19 +1,12 @@
 spring:
   application:
-    name: microservice_template
-  datasource:
-    url: jdbc:h2:mem:${TEST_MYSQL_DATABASE}
-    username: ${TEST_MYSQL_USER}
-    password: ${TEST_MYSQL_PASSWORD}
-    driver-class-name: org.h2.Driver
-  jpa:
-      hibernate:
-        ddl-auto: create-drop
-      properties:
-        hibernate:
-          format_sql: true
+    name: crypto_info_svc
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+crypto:
+  api_url: ${CRYPTO_API_URL}
+  api_key: ${CRYPTO_API_KEY}

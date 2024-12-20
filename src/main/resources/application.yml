@@ -1,20 +1,12 @@
 spring:
   application:
-    name: microservice_template
-  datasource:
-    url: jdbc:mysql://localhost:3306/${MYSQL_DATABASE}
-    username: ${MYSQL_USER}
-    password: ${MYSQL_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
+    name: crypto_info_svc
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+crypto:
+  api_url: ${CRYPTO_API_URL}
+  api_key: ${CRYPTO_API_KEY}
