@@ -7,7 +7,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.sahil.crypto.info.dto.CryptoDto;
 import com.sahil.crypto.info.model.Crypto;
-import com.sahil.crypto.info.util.ApiFunctions;
 
 import jakarta.annotation.PostConstruct;
 
@@ -39,18 +38,17 @@ public class CryptoService {
         webClient = WebClient
         .builder()
         .baseUrl(apiUrl)
+        .defaultHeader("x_cg_demo_api_key", apiKey)
         .exchangeStrategies(strategies)
         .build();
     }
 
-    public Mono<Crypto> getCrypto(String symbol) {
+    public Mono<Crypto> getPrice(String symbol) {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
-            .queryParam("function", ApiFunctions.GLOBAL_QUOTE.getValue())
-            .queryParam("symbol", symbol)
-            // datatype: json or csv
-            .queryParam("datatype", "json")
-            .queryParam("apikey", apiKey)
+            .path("//api/v3/simple/price")
+            .queryParam("ids", symbol)
+            .queryParam("vs_currencies", "USD")
             .build())
             .retrieve()
             .bodyToMono(CryptoDto.class)
