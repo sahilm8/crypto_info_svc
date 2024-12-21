@@ -43,18 +43,30 @@ public class CryptoService {
         .build();
     }
 
-    public Mono<Crypto> getPrice(String symbol) {
+    public Mono<Crypto> getPrice(String name) {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
-            .path("//api/v3/simple/price")
-            .queryParam("ids", symbol)
-            .queryParam("vs_currencies", "USD")
+            .path("/api/v3/simple/price")
+            .queryParam("ids", name)
+            .queryParam("vs_currencies", "usd")
+            .queryParam("include_market_cap", true)
+            .queryParam("include_24hr_vol", true)
+            .queryParam("include_24hr_change", true)
+            .queryParam("include_last_updated_at", true)
+            .queryParam("precision", "full")
             .build())
             .retrieve()
             .bodyToMono(CryptoDto.class)
             .map(dto -> {
                 log.info("dto: " + dto);
-                return null;
+                Crypto crypto = new Crypto();
+                crypto.setName(name);
+                crypto.setUsdPrice(dto.getUsdPrice(name));
+                crypto.setUsdMarketCap(dto.getUsdMarketCap(name));
+                crypto.setUsd24hVolume(dto.getUsd24hVol(name));
+                crypto.setUsd24hChange(dto.getUsd24hChange(name));
+                crypto.setLastUpdatedAt(dto.getLastUpdatedAt(name));
+                return crypto;
             });
     }
 }
