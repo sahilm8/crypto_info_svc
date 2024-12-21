@@ -6,7 +6,7 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-API to fetch and return crypto data. Based on the [Alpha Vantage API](https://www.alphavantage.co).
+API to fetch and return crypto data. Based on the [CoinGecko API](https://www.coingecko.com).
 
 ## Stack
 
