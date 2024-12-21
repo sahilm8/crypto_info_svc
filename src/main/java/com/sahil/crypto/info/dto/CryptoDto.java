@@ -1,6 +1,10 @@
 package com.sahil.crypto.info.dto;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
@@ -19,25 +23,28 @@ public class CryptoDto {
     }
     */
 
-    private Map<String, Map<String, String>> cryptoData;
-    
-    public String getUsdPrice(String name) {
-        return cryptoData.get(name).get("usd");
+    private Map<String, CryptoData> cryptoData = new HashMap<>();
+
+    @JsonAnySetter
+    public void setCryptoData(String name, CryptoData cryptoData) {
+        this.cryptoData.put(name, cryptoData);
     }
 
-    public String getUsdMarketCap(String name) {
-        return cryptoData.get(name).get("usd_market_cap");
-    }
-
-    public String getUsd24hVol(String name) {
-        return cryptoData.get(name).get("usd_24h_vol");
-    }
-
-    public String getUsd24hChange(String name) {
-        return cryptoData.get(name).get("usd_24h_change");
-    }
-
-    public String getLastUpdatedAt(String name) {
-        return cryptoData.get(name).get("last_updated_at");
+    @Data
+    public static class CryptoData {
+        @JsonProperty("usd")
+        private String usd;
+        
+        @JsonProperty("usd_market_cap")
+        private String usdMarketCap;
+        
+        @JsonProperty("usd_24h_vol")
+        private String usd24hVol;
+        
+        @JsonProperty("usd_24h_change")
+        private String usd24hChange;
+        
+        @JsonProperty("last_updated_at")
+        private String lastUpdatedAt;
     }
 }
