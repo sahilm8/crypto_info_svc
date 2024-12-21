@@ -33,7 +33,7 @@ public class CryptoService {
         .codecs(configurer -> 
             configurer
             .defaultCodecs()
-            .maxInMemorySize(1024 * 1024 * 10)  // 10MB
+            .maxInMemorySize(1024 * 1024 * 10) // 10MB
         )
         .build();
 
