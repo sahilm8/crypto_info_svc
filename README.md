@@ -37,11 +37,26 @@ API to fetch and return crypto data. Based on the [CoinGecko API](https://www.co
 Requests can be made to get the following resources:
 
 - Crypto
+    - Symbol
+    - Price
+    - Currency
 - Crypto Time Series
+    - OHLCV
+    - Days: 1, 7, 14, 30, 90, 180, 365
 
 ### Requests
 
 - GET /:
 ```
 curl -i -X GET http://localhost:8080/api/v1/crypto/
+```
+
+- GET /get-price:
+```
+curl -i -X GET http://localhost:8080/api/v1/crypto/get-price?name=bitcoin
+```
+
+- GET /get-ohlcv:
+```
+curl -i -X GET http://localhost:8080/api/v1/crypto/get-ohlcv?name=bitcoin
 ```
