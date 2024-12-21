@@ -28,13 +28,14 @@ public class CryptoController {
         return String.format(
                 "Crypto Info API%n%n" +
                         "Welcome to the crypto endpoint, you can make the following requests:%n" +
-                        "- GET /get-crypto%n");
+                        "- GET /get-price%n" +
+                        "- GET /get-ohlcv%n");
     }
 
-    @GetMapping(value = "/get-crypto", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<Crypto>> getCrypto(@RequestParam String symbol) {
-        log.info("Received request to GET /get-global-quote with argument: " + symbol.trim());
-        return cryptoService.getCrypto(symbol.trim()).map(ResponseEntity::ok)
+    @GetMapping(value = "/get-price", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ResponseEntity<Crypto>> getPrice(@RequestParam String symbol) {
+        log.info("Received request to GET /get-price with argument: " + symbol.trim());
+        return cryptoService.getPrice(symbol.trim()).map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }
