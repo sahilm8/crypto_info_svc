@@ -37,9 +37,12 @@ API to fetch and return crypto data. Based on the [CoinGecko API](https://www.co
 Requests can be made to get the following resources:
 
 - Crypto
-    - Symbol
+    - Name
     - Price
-    - Currency
+    - Market Cap
+    - 24 Hour Volume
+    - 24 Hour Change
+    - Last Updated At
 - Crypto Time Series
     - OHLCV
     - Days: 1, 7, 14, 30, 90, 180, 365
