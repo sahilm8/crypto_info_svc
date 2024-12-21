@@ -6,14 +6,10 @@ import lombok.Data;
 
 @Data
 public class Crypto {
-    private String symbol;
-    private BigDecimal open;
-    private BigDecimal high;
-    private BigDecimal low;
-    private BigDecimal price;
-    private BigDecimal volume;
-    private String latestTradingDay;
-    private BigDecimal prevClose;
-    private BigDecimal change;
-    private BigDecimal changePercent;
+    private String name;
+    private BigDecimal usdPrice;
+    private BigDecimal usdMarketCap;
+    private BigDecimal usd24hVolume;
+    private BigDecimal usd24hChange;
+    private Long lastUpdatedAt; // UNIX timestamp
 }
