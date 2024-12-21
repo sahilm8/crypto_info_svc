@@ -33,9 +33,9 @@ public class CryptoController {
     }
 
     @GetMapping(value = "/get-price", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ResponseEntity<Crypto>> getPrice(@RequestParam String symbol) {
-        log.info("Received request to GET /get-price with argument: " + symbol.trim());
-        return cryptoService.getPrice(symbol.trim()).map(ResponseEntity::ok)
+    public Mono<ResponseEntity<Crypto>> getPrice(@RequestParam String name) {
+        log.info("Received request to GET /get-price with argument: " + name.trim());
+        return cryptoService.getPrice(name.trim()).map(ResponseEntity::ok)
         .defaultIfEmpty(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 }
