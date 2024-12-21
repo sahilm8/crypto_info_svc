@@ -1,5 +1,7 @@
 package com.sahil.crypto.info.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
@@ -46,26 +48,27 @@ public class CryptoService {
     public Mono<Crypto> getPrice(String name) {
         return webClient.get()
             .uri(uriBuilder -> uriBuilder
-            .path("/api/v3/simple/price")
-            .queryParam("ids", name)
-            .queryParam("vs_currencies", "usd")
-            .queryParam("include_market_cap", true)
-            .queryParam("include_24hr_vol", true)
-            .queryParam("include_24hr_change", true)
-            .queryParam("include_last_updated_at", true)
-            .queryParam("precision", "full")
-            .build())
+                .path("/api/v3/simple/price")
+                .queryParam("ids", name)
+                .queryParam("vs_currencies", "usd")
+                .queryParam("include_market_cap", true)
+                .queryParam("include_24hr_vol", true)
+                .queryParam("include_24hr_change", true)
+                .queryParam("include_last_updated_at", true)
+                .queryParam("precision", "full")
+                .build())
             .retrieve()
             .bodyToMono(CryptoDto.class)
             .map(dto -> {
                 log.info("dto: " + dto);
+                CryptoDto.CryptoData data = dto.getCryptoData().get(name);
                 Crypto crypto = new Crypto();
                 crypto.setName(name);
-                crypto.setUsdPrice(dto.getUsdPrice(name));
-                crypto.setUsdMarketCap(dto.getUsdMarketCap(name));
-                crypto.setUsd24hVolume(dto.getUsd24hVol(name));
-                crypto.setUsd24hChange(dto.getUsd24hChange(name));
-                crypto.setLastUpdatedAt(dto.getLastUpdatedAt(name));
+                crypto.setUsdPrice(data.getUsd() != null ? new BigDecimal(data.getUsd()) : null);
+                crypto.setUsdMarketCap(data.getUsdMarketCap() != null ? new BigDecimal(data.getUsdMarketCap()) : null);
+                crypto.setUsd24hVolume(data.getUsd24hVol() != null ? new BigDecimal(data.getUsd24hVol()) : null);
+                crypto.setUsd24hChange(data.getUsd24hChange() != null ? new BigDecimal(data.getUsd24hChange()) : null);
+                crypto.setLastUpdatedAt(data.getLastUpdatedAt() != null ? Long.parseLong(data.getLastUpdatedAt()) : null);
                 return crypto;
             });
     }
