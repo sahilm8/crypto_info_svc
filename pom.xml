@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.sahil</groupId>
 	<artifactId>crypto.info</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<name>crypto_info_svc</name>
 	<description>
 		API to fetch and return crypto data. Based on the Alpha Vantage API.
