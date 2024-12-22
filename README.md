@@ -44,7 +44,7 @@ Requests can be made to get the following resources:
     - 24 Hour Change
     - Last Updated At
 - Crypto Time Series
-    - OHLCV
+    - OHLC
     - Days: 1, 7, 14, 30, 90, 180, 365
 
 ### Requests
@@ -59,7 +59,7 @@ curl -i -X GET http://localhost:8080/api/v1/crypto/
 curl -i -X GET http://localhost:8080/api/v1/crypto/get-price?name=bitcoin
 ```
 
-- GET /get-ohlcv:
+- GET /get-ohlc:
 ```
-curl -i -X GET http://localhost:8080/api/v1/crypto/get-ohlcv?name=bitcoin&days=365
+curl -i -X GET http://localhost:8080/api/v1/crypto/get-ohlc?name=bitcoin&days=365
 ```
