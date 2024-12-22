@@ -1,6 +1,8 @@
 package com.sahil.crypto.info.service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -8,7 +10,9 @@ import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.sahil.crypto.info.dto.CryptoDto;
+import com.sahil.crypto.info.dto.CryptoTsDto;
 import com.sahil.crypto.info.model.Crypto;
+import com.sahil.crypto.info.model.CryptoTs;
 
 import jakarta.annotation.PostConstruct;
 
@@ -71,5 +75,34 @@ public class CryptoService {
                 crypto.setLastUpdatedAt(data.getLastUpdatedAt() != null ? Long.parseLong(data.getLastUpdatedAt()) : null);
                 return crypto;
             });
+    }
+
+    public Mono<CryptoTs> getOhlc(String name, String days) {
+        return webClient.get()
+        .uri(uriBuilder -> uriBuilder
+            .path("/api/v3/coins/" + name + "/ohlc")
+            .queryParam("vs_currency", "usd")
+            .queryParam("days", days)
+            .queryParam("precision", "full")
+            .build())
+        .retrieve()
+        .bodyToMono(CryptoTsDto.class)
+        .map(dto -> {
+            log.info("dto: " + dto);
+            CryptoTs cryptoTs = new CryptoTs();
+            List<BigDecimal[]> data = dto.stream()
+            .map(entry -> {
+                BigDecimal[] ohlc = new BigDecimal[4];
+                ohlc[0] = new BigDecimal(entry[1].toString());
+                ohlc[1] = new BigDecimal(entry[2].toString());
+                ohlc[2] = new BigDecimal(entry[3].toString());
+                ohlc[3] = new BigDecimal(entry[4].toString());
+                return ohlc;
+                })
+            .collect(Collectors.toList());
+            cryptoTs.setName(name);
+            cryptoTs.setData(data);
+            return cryptoTs;
+        });
     }
 }
