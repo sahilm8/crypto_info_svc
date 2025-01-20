@@ -1,6 +1,7 @@
 package com.sahil.crypto.info.dto.getCrypto;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -32,8 +33,9 @@ public class GetCryptoApiResponse {
     private Map<String, Crypto> crypto;
 
     @JsonAnySetter
-    public void setCrypto(String key, Crypto value) {
-        crypto.put(key, value);
+    public void setCrypto(String name, Crypto crypto) {
+        this.crypto = new HashMap<>();
+        this.crypto.put(name, crypto);
     }
 
     @Data
