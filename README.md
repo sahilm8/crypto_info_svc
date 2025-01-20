@@ -49,13 +49,23 @@ Requests can be made to get the following resources:
 #### Request
 
 ```
-
+curl --location --request GET 'localhost:8080/api/v1/crypto/get-crypto' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "bitcoin"
+}'
 ```
 
 #### Response
 
 ```
-
+{
+    "price": 103145.49312179499,
+    "marketCap": 2043195974511.9758,
+    "volume": 150847790218.57977,
+    "change": -1.5582451620468336,
+    "lastUpdatedAt": 1737409217
+}
 ```
 
 ### Get Crypto Time Series
@@ -63,11 +73,39 @@ Requests can be made to get the following resources:
 #### Request
 
 ```
-
+curl --location --request GET 'localhost:8080/api/v1/crypto/get-crypto-ts' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "bitcoin",
+    "days": 365
+}'
 ```
 
 #### Response
 
 ```
-
+[
+    [
+        "1705881600000",
+        "41661.368099231084",
+        "41842.672928405475",
+        "41513.193991957734",
+        "41541.89945706261"
+    ],
+    [
+        "1706227200000",
+        "41545.548425536675",
+        "41644.54846272758",
+        "38520.372972443714",
+        "39938.286441558776"
+    ],
+    [
+        "1706572800000",
+        "39917.164425029805",
+        "43286.6392695487",
+        "39826.881954984616",
+        "43267.609276387666"
+    ],
+    ...
+]
 ```
