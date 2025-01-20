@@ -16,5 +16,5 @@ public class GetCryptoResponse {
     private BigDecimal marketCap;
     private BigDecimal volume;
     private BigDecimal change;
-    private String lastUpdatedAt;
+    private Long lastUpdatedAt;
 }

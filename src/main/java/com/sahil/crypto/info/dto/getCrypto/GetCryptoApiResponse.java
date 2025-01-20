@@ -53,6 +53,6 @@ public class GetCryptoApiResponse {
         private BigDecimal change;
 
         @JsonProperty("last_updated_at")
-        private String lastUpdatedAt;
+        private Long lastUpdatedAt;
     }
 }
