@@ -1,5 +1,6 @@
 package com.sahil.crypto.info.dto.getCrypto;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -38,16 +39,16 @@ public class GetCryptoApiResponse {
     @Data
     public static class Crypto {
         @JsonProperty("usd")
-        private String usd;
+        private BigDecimal price;
 
         @JsonProperty("usd_market_cap")
-        private String marketCap;
+        private BigDecimal marketCap;
 
         @JsonProperty("usd_24h_vol")
-        private String volume;
+        private BigDecimal volume;
 
         @JsonProperty("usd_24h_change")
-        private String change;
+        private BigDecimal change;
 
         @JsonProperty("last_updated_at")
         private String lastUpdatedAt;
