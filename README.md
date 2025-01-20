@@ -42,4 +42,32 @@ API to fetch and return crypto data. Based on the [CoinGecko API](https://www.co
 Requests can be made to get the following resources:
 
 - Crypto
-- Crypto Time Series (interval: 1min, 5min, 15min, 30min, 60min)
+- Crypto Time Series (days: 1, 7, 14, 30, 90, 180, 365, max)
+
+### Get Crypto
+
+#### Request
+
+```
+
+```
+
+#### Response
+
+```
+
+```
+
+### Get Crypto Time Series
+
+#### Request
+
+```
+
+```
+
+#### Response
+
+```
+
+```
