@@ -49,7 +49,7 @@ Requests can be made to perform the following actions:
 #### Request
 
 ```
-curl --location --request GET 'localhost:8080/api/v1/crypto/get-crypto' \
+curl --location --request GET 'localhost:8080/api/v2/crypto/get-crypto' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "bitcoin"
@@ -73,7 +73,7 @@ curl --location --request GET 'localhost:8080/api/v1/crypto/get-crypto' \
 #### Request
 
 ```
-curl --location --request GET 'localhost:8080/api/v1/crypto/get-crypto-ts' \
+curl --location --request GET 'localhost:8080/api/v2/crypto/get-crypto-ts' \
 --header 'Content-Type: application/json' \
 --data '{
     "name": "bitcoin",
