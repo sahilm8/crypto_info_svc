@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1/crypto")
+@RequestMapping("/api/v2/crypto")
 @RequiredArgsConstructor
 @Validated
 public class CryptoController {
