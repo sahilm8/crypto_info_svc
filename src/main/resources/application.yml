@@ -9,7 +9,7 @@ server:
 
 logging:
   level:
-    com.sahil.stock.info: DEBUG
+    com.sahil.crypto.info: DEBUG
     org.springframework.web: DEBUG
 
 crypto:
