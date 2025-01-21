@@ -39,10 +39,10 @@ API to fetch and return crypto data. Based on the [CoinGecko API](https://www.co
 
 ## Endpoints
 
-Requests can be made to get the following resources:
+Requests can be made to perform the following actions:
 
-- Crypto
-- Crypto Time Series (days: 1, 7, 14, 30, 90, 180, 365, max)
+- Get Crypto
+- Get Crypto Time Series (days: 1, 7, 14, 30, 90, 180, 365, max)
 
 ### Get Crypto
 
