@@ -4,6 +4,9 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 
+server:
+  port: 8080
+
 logging:
   level:
     com.sahil.stock.info: DEBUG
